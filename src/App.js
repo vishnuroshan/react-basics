@@ -47,7 +47,7 @@ class App extends Component {
     });
   }
 
-  togglePersonHandler = (event) => {
+  togglePersonHandler = () => {
     this.setState({ showPerson: !this.state.showPerson });
   }
 
