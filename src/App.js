@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.module.css';
 // import styled from 'styled-components';
 import Person from './Person/Person';
+import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 // import Radium, { StyleRoot } from 'radium';
 
 // const StyledButton = styled.button`
@@ -104,13 +105,14 @@ class App extends Component {
       persons = (
         <div >
           {this.state.persons.map((person, index) => {
-            return <Person
-              click={this.deletePersonHandler.bind(this, index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              change={(event) => this.nameChangedHandler(event, person.id)}
-            />;
+            return <ErrorBoundry key={person.id}>
+              <Person
+                click={this.deletePersonHandler.bind(this, index)}
+                name={person.name}
+                age={person.age}
+                change={(event) => this.nameChangedHandler(event, person.id)}
+              />
+            </ErrorBoundry>;
           })}
         </div>
       );
