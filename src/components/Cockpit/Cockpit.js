@@ -13,7 +13,10 @@ const Cockpit = (props) => {
 
     return (
         <div>
-            <p className={assignedClasses.join(' ')}>Hi, I am react-basics app</p>
+            <h1>
+                {props.title}
+            </h1>
+            <p className={assignedClasses.join(' ')}>This is awesome and also easy to learn!!</p>
             <button
                 className={BtnClass}
                 alt={props.switch.toString()}
