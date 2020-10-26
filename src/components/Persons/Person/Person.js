@@ -1,14 +1,7 @@
 import React from 'react';
-// import Radium from 'radium';
 import classes from './Person.module.css';
 
 const person = (props) => {
-
-    let rnd = Math.random();
-    console.log(rnd);
-    if (rnd > 0.7) {
-        throw new Error('Something went wrong!');
-    }
     return (
         <div className={classes.person}>
             < p onClick={props.click} >

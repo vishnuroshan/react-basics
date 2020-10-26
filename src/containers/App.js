@@ -1,23 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
-// import styled from 'styled-components';
-import Person from './Person/Person';
-import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
-// import Radium, { StyleRoot } from 'radium';
-
-// const StyledButton = styled.button`
-//     background-color: ${props => props.alt ? 'red' : 'green'};
-//     color: white;
-//     font: inherit;
-//     border: 1px solid blue;
-//     padding: 8px;
-//     cursor: pointer;
-
-//     &:hover {
-//       background-color: ${props => props.alt ? 'salmon' : 'red'};
-//       color: black;
-//     }
-// `;
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
 
@@ -26,13 +9,15 @@ class App extends Component {
       {
         id: '1',
         name: 'vijay',
-        age: 190
+        age: 19
       },
       {
+        id: '2',
         name: 'vishnu',
         age: 26
       },
       {
+        id: '3',
         name: 'manoj',
         age: 54
       }
@@ -53,6 +38,7 @@ class App extends Component {
   }
 
   nameChangedHandler = (event, id) => {
+    console.log(this.state.persons);
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
@@ -64,56 +50,19 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState({ persons });
-
-
-    this.setState({
-      persons: [{
-        id: '1',
-        name: event.target.value,
-        age: 19
-      },
-      {
-        id: '2',
-        name: 'vishnu',
-        age: 26
-      },
-      {
-        id: '3',
-        name: 'manoj',
-        age: 54
-      }]
-    })
   }
 
 
   render() {
-    // const style = {
-    //   backgroundColor: 'green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // }
     let BtnClass = '';
     let persons = null;
     if (this.state.showPerson) {
       persons = (
         <div >
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundry key={person.id}>
-              <Person
-                click={this.deletePersonHandler.bind(this, index)}
-                name={person.name}
-                age={person.age}
-                change={(event) => this.nameChangedHandler(event, person.id)}
-              />
-            </ErrorBoundry>;
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler} />
         </div>
       );
 
@@ -134,7 +83,7 @@ class App extends Component {
         <p className={assignedClasses.join(' ')}>Hi, I am react-basics app</p>
         <button
           className={BtnClass}
-          alt={this.state.showPerson}
+          alt={this.state.showPerson.toString()}
           onClick={this.togglePersonHandler}>
           Switch name
         </button>
