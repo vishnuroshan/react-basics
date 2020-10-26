@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -54,19 +55,14 @@ class App extends Component {
 
 
   render() {
-    let BtnClass = '';
     let persons = null;
     if (this.state.showPerson) {
       persons = (
-        <div >
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler} />
       );
-
-      BtnClass = classes.red;
     }
 
     // let classes = ['red', 'bold'].join(' ');
@@ -80,13 +76,11 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <p className={assignedClasses.join(' ')}>Hi, I am react-basics app</p>
-        <button
-          className={BtnClass}
-          alt={this.state.showPerson.toString()}
-          onClick={this.togglePersonHandler}>
-          Switch name
-        </button>
+        <Cockpit
+          persons={this.state.persons}
+          switch={this.state.showPerson}
+          clicked={this.togglePersonHandler}
+        />
         {persons}
       </div>
     );
