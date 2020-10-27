@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {
+    // useEffect
+} from 'react';
 import classes from './Cockpit.module.css';
 
 
@@ -7,24 +9,27 @@ const Cockpit = (props) => {
     *  can use as amany useEfects you want
     *  second argument is important for changing the behavior
     *  second argument is an array. if its empty array, it will run only initially
-    * if second argument is props property, will run only when the props property changes
+    *  if second argument is props property, will run only when the props property changes
      */
-    useEffect(() => {
-        console.log('[cockpit.js] 1st useEffect');
-        setTimeout(() => {
-            alert('saved something in cloud!');
-        }, 1000)
-        return () => {
-            console.log('[cockpit.js] cleanup work in 1st useEffect');
-        }
-    }, [])
+    //    useEffect(() => {
+    //         console.log('[cockpit.js] 1st useEffect');
+    //         // API call
+    //         setTimeout(() => {
+    //             alert('saved something in cloud!');
+    //         }, 1000);
 
-    useEffect(() => {
-        console.log('[cockpit.js] 2nd useEffect');
-        return () => {
-            console.log('[cockpit.js] cleanup work in 2nd useEffect')
-        }
-    });
+    //         return () => {
+    //             console.log('[cockpit.js] cleanup work in 1st useEffect');
+    //         }
+    //     }, []);
+
+    //     useEffect(() => { 
+    //         console.log('[cockpit.js] 2nd useEffect');
+    //         // can do some computation
+    //         return () => {
+    //             console.log('[cockpit.js] cleanup work in 2nd useEffect');
+    //         }
+    //     });
 
 
     let assignedClasses = [], BtnClass = '';

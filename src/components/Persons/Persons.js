@@ -3,7 +3,7 @@ import Person from './Person/Person';
 // pureComponent does shouldcomponentUpdate for all props properties itself
 class Persons extends PureComponent {
 
-    // ? using pureComponent, this is automatically done.
+    // ? using pureComponent, this is automatically done
     // shouldComponentUpdate(nxtProps, nxtState) {
     //     console.log('[Persons.js shouldComponentUpdate]');
     //     if (
@@ -14,6 +14,7 @@ class Persons extends PureComponent {
     //         return true;
     //     else return false;
     // }
+
     /*
     *  This is one of the newer lifecycle methods introduced very recently
     *  safer alternative to the previous lifecycle method componentWillUpdate()
@@ -51,7 +52,7 @@ class Persons extends PureComponent {
                 click={() => this.props.clicked(index)}
                 name={person.name}
                 age={person.age}
-                key={index}
+                key={person.id}
                 change={(event) => this.props.changed(event, person.id)}
             />
         })
