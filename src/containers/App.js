@@ -25,6 +25,24 @@ class App extends Component {
     return state;
   }
 
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate')
+  }
+
+  /*
+    *  can be handy sometimes when you don’t want React to render your state or prop changes
+    *  Anytime setState() is called, the component re-renders by default
+    *  used to let React know if a component is not affected by the state and prop changes
+    *  Ishould be sparingly used
+    *  does NOT allows setState()
+    *  should always return a boolean value to the question, “Should I re-render my component?”
+    *  for more please visit https://programmingwithmosh.com/javascript/react-lifecycle-methods/
+    */
+  shouldComponentUpdate(nxtProps, nxtState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
   /*
    *  called as soon as the component is mounted and ready
    *  good place to initiate API calls
@@ -41,7 +59,7 @@ class App extends Component {
       { id: '1', name: 'vijay', age: 19 },
       { id: '2', name: 'vishnu', age: 26 },
       { id: '3', name: 'manoj', age: 54 }
-    ], showPerson: false
+    ], showPerson: false, showCockpit: true
   }
   deletePersonHandler = (index) => {
     let persons = [...this.state.persons]
@@ -95,12 +113,13 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
+        <button onClick={() => { this.setState({ showCockpit: false }) }}>Remove cockpit</button>
+        {this.state.showCockpit ? <Cockpit
           title={this.props.title}
-          persons={this.state.persons}
+          personsLength={this.state.persons.length}
           switch={this.state.showPerson}
           clicked={this.togglePersonHandler}
-        />
+        /> : null}
         {persons}
       </div>
     );

@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
+// pureComponent does shouldcomponentUpdate for all props properties itself
+class Persons extends PureComponent {
 
-class Persons extends Component {
-
-    /*
-    *  can be handy sometimes when you don’t want React to render your state or prop changes
-    *  Anytime setState() is called, the component re-renders by default
-    *  used to let React know if a component is not affected by the state and prop changes
-    *  Ishould be sparingly used
-    *  does NOT allows setState()
-    *  should always return a boolean value to the question, “Should I re-render my component?”
-    *  for more please visit https://programmingwithmosh.com/javascript/react-lifecycle-methods/
-    */
-    shouldComponentUpdate(nxtProps, nxtState) {
-        console.log('[Persons.js shouldComponentUpdate]');
-        return true;
-    }
+    // ? using pureComponent, this is automatically done.
+    // shouldComponentUpdate(nxtProps, nxtState) {
+    //     console.log('[Persons.js shouldComponentUpdate]');
+    //     if (
+    //         nxtProps.persons !== this.props.persons ||
+    //         nxtProps.changed !== this.props.changed ||
+    //         nxtProps.clicked !== this.props.clicked
+    //     )
+    //         return true;
+    //     else return false;
+    // }
     /*
     *  This is one of the newer lifecycle methods introduced very recently
     *  safer alternative to the previous lifecycle method componentWillUpdate()
@@ -40,6 +38,10 @@ class Persons extends Component {
     componentDidUpdate(prvProps, prvState, snapshot) {
         console.log('[Persons.js componentDidUpdate]');
         console.log(snapshot);
+    }
+
+    componentWillUnmount() {
+        console.log('[person.js] componentWillUnmount')
     }
 
     render() {
